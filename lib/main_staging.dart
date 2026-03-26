@@ -2,5 +2,5 @@ import 'app/bootstrap.dart';
 import 'core/config/app_environment.dart';
 
 Future<void> main() async {
-  await bootstrap(AppEnvironment.fromDefines());
+  await bootstrap(AppEnvironment.staging());
 }

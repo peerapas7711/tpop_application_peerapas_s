@@ -4,11 +4,28 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
         {
             "name": "tpop_application_peerapas_s",
             "request": "launch",
             "type": "dart"
+        },
+        {
+            "name": "T-POP Staging",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_staging.dart",
+            "args": [
+                "--dart-define=APP_ENV=staging"
+            ]
+        },
+        {
+            "name": "T-POP Production",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_prod.dart",
+            "args": [
+                "--dart-define=APP_ENV=prod"
+            ]
         },
         {
             "name": "tpop_application_peerapas_s (profile mode)",
