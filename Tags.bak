@@ -1,0 +1,1 @@
+{"lang":"th","localelang":"th","locale":"th_TH","localeLabel":"ไทย"}
