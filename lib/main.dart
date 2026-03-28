@@ -1,8 +1,10 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tpop_application_peerapas_s/app_environment.dart';
+import 'package:tpop_application_peerapas_s/firebase_options.dart';
 import 'package:tpop_application_peerapas_s/modules/subscription/presentation/bindings/subscription_binding.dart';
 import 'package:tpop_application_peerapas_s/routes/app_pages.dart';
 import 'package:tpop_application_peerapas_s/routes/app_routes.dart';
@@ -12,6 +14,7 @@ import 'package:tpop_application_peerapas_s/utils/lang/app_translations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await AppStorage.instance.init();
 
   runApp(SubscriptionApp(environment: AppEnvironment.fromDefines()));

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "429592041618",
+    "project_id": "t-pop-app-f309e",
+    "storage_bucket": "t-pop-app-f309e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:429592041618:android:e7980eaff02c0b4fc5ee4b",
+        "android_client_info": {
+          "package_name": "com.example.tpop_application_peerapas_s"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRSI1arL2_ldfYp-YV5flK5z4HbW4BT20"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:429592041618:android:b9460baab0708c79c5ee4b",
+        "android_client_info": {
+          "package_name": "com.tpop.application.peerapass"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRSI1arL2_ldfYp-YV5flK5z4HbW4BT20"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
