@@ -58,7 +58,7 @@ class PurchasePackageController extends GetxController
       }
 
       if (!_containsPackage(packages, selectedPackageId.value)) {
-        selectedPackageId.value = null;
+        selectedPackageId.value = packages.first.id;
       }
 
       change(GetStatus<List<SubscriptionPackage>>.success(packages));

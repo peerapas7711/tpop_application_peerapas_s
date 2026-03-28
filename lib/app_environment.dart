@@ -2,6 +2,17 @@ enum AppFlavor { staging, prod }
 
 enum MockDataState { success, empty, error }
 
+extension AppFlavorX on AppFlavor {
+  String get key {
+    switch (this) {
+      case AppFlavor.staging:
+        return 'staging';
+      case AppFlavor.prod:
+        return 'prod';
+    }
+  }
+}
+
 class FirebaseEnvironmentConfig {
   const FirebaseEnvironmentConfig({
     required this.projectId,
@@ -32,6 +43,9 @@ class AppEnvironment {
   final FirebaseEnvironmentConfig firebaseConfig;
   final MockDataState packagesState;
   final MockDataState historyState;
+
+  bool get isProduction => flavor == AppFlavor.prod;
+  String get firestoreEnvironmentKey => flavor.key;
 
   factory AppEnvironment.fromDefines() {
     final flavor = _parseFlavor(

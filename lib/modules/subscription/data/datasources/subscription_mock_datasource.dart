@@ -1,12 +1,14 @@
 import 'package:tpop_application_peerapas_s/app_environment.dart';
+
 import '../../domain/entities/purchase_history_item.dart';
 import '../../domain/entities/purchase_history_snapshot.dart';
 import '../models/purchase_history_item_model.dart';
 import '../models/subscription_package_model.dart';
+import 'subscription_seed_catalog.dart';
 
 class SubscriptionMockDatasource {
   SubscriptionMockDatasource(this._environment)
-    : _packages = _buildPackages(),
+    : _packages = kDefaultSubscriptionPackages,
       _history = _buildInitialHistory();
 
   final AppEnvironment _environment;
@@ -90,7 +92,7 @@ class SubscriptionMockDatasource {
       purchasedAt: now,
       startAt: now,
       endAt: now.add(Duration(days: selectedPackage.durationDays)),
-      paymentMethodKey: _resolvePaymentMethod(selectedPackage.id),
+      paymentMethodKey: resolveSubscriptionPaymentMethod(selectedPackage.id),
       status: PurchaseStatus.active,
     );
 
@@ -98,40 +100,9 @@ class SubscriptionMockDatasource {
     return purchase;
   }
 
-  static List<SubscriptionPackageModel> _buildPackages() {
-    return const <SubscriptionPackageModel>[
-      SubscriptionPackageModel(
-        id: 'pink_plus',
-        titleKey: 'packagePinkPlusTitle',
-        subtitleKey: 'packagePinkPlusSubtitle',
-        descriptionKey: 'packagePinkPlusDescription',
-        priceLabel: 'THB 149',
-        billingCycleKey: 'subscriptionPerMonth',
-        featureKeys: <String>[
-          'packagePinkPlusFeature1',
-          'packagePinkPlusFeature2',
-          'packagePinkPlusFeature3',
-          'packagePinkPlusFeature4',
-        ],
-        durationDays: 30,
-      ),
-      SubscriptionPackageModel(
-        id: 'stage_pass',
-        titleKey: 'packageStagePassTitle',
-        subtitleKey: 'packageStagePassSubtitle',
-        descriptionKey: 'packageStagePassDescription',
-        priceLabel: 'THB 1,290',
-        billingCycleKey: 'subscriptionPerYear',
-        featureKeys: <String>[
-          'packageStagePassFeature1',
-          'packageStagePassFeature2',
-          'packageStagePassFeature3',
-          'packageStagePassFeature4',
-        ],
-        durationDays: 365,
-        isPopular: true,
-      ),
-    ];
+  Future<void> clearPurchaseHistory() async {
+    await Future<void>.delayed(const Duration(milliseconds: 300));
+    _history.clear();
   }
 
   static List<PurchaseHistoryItemModel> _buildInitialHistory() {
@@ -175,15 +146,5 @@ class SubscriptionMockDatasource {
         status: PurchaseStatus.expired,
       ),
     ];
-  }
-
-  String _resolvePaymentMethod(String packageId) {
-    switch (packageId) {
-      case 'stage_pass':
-        return 'paymentApplePay';
-      case 'pink_plus':
-      default:
-        return 'paymentCreditCard';
-    }
   }
 }

@@ -6,4 +6,5 @@ abstract class SubscriptionRepository {
   Future<List<SubscriptionPackage>> getAvailablePackages();
   Future<PurchaseHistorySnapshot> getPurchaseHistory();
   Future<PurchaseHistoryItem> purchasePackage(String packageId);
+  Future<void> clearPurchaseHistory();
 }

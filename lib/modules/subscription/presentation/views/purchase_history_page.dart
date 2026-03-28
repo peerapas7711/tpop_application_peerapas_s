@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:tpop_application_peerapas_s/routes/app_routes.dart';
 import 'package:tpop_application_peerapas_s/utils/constants/app_colors.dart';
 import 'package:tpop_application_peerapas_s/widgets/state_cards.dart';
+
 import '../../domain/entities/purchase_history_item.dart';
 import '../../domain/entities/purchase_history_snapshot.dart';
 import '../controllers/purchase_history_controller.dart';
@@ -119,6 +120,7 @@ class _HistoryContent extends StatelessWidget {
                         ],
                       )
                       : Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           _HistorySection(
                             titleKey: 'subscriptionActivePlans',

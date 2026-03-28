@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -15,14 +14,12 @@ import 'package:tpop_application_peerapas_s/utils/lang/app_translations.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final environment = AppEnvironment.fromDefines();
+
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await AppStorage.instance.init();
 
-  final db = FirebaseFirestore.instance;
-
-  await db.collection('test').add({'message': 'hello firestore'});
-
-  runApp(SubscriptionApp(environment: AppEnvironment.fromDefines()));
+  runApp(SubscriptionApp(environment: environment));
 }
 
 class SubscriptionApp extends StatelessWidget {

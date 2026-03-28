@@ -26,6 +26,7 @@ class AppTranslations extends Translations {
   Map<String, Map<String, String>> get keys => {
     'en_US': {
       'commonBrowsePlans': 'Browse plans',
+      'commonCancel': 'Cancel',
       'commonEmptyTitle': 'No data available',
       'commonErrorTitle': 'Something went wrong',
       'commonLanguage': 'Language',
@@ -41,7 +42,7 @@ class AppTranslations extends Translations {
           'Your active and expired packages will appear here after a purchase.',
       'subscriptionHistoryEmptyTitle': 'No purchase history',
       'subscriptionHistoryErrorDescription':
-          'Please try again or review the current mock state.',
+          'Please try again and check your Firestore data or permissions.',
       'subscriptionHistoryErrorTitle': 'Unable to load history',
       'subscriptionHistoryHeadline': 'Track current and past packages',
       'subscriptionHistoryLoadingDescription':
@@ -56,11 +57,11 @@ class AppTranslations extends Translations {
       'subscriptionNoExpiredPlan': 'No expired packages',
       'subscriptionPaymentMethod': 'Payment method',
       'subscriptionPaymentSecure':
-          'Responsive flow ready for staging and production setup',
+          'Responsive flow backed by Firestore with staging and production paths',
       'subscriptionPerMonth': 'per month',
       'subscriptionPerYear': 'per year',
       'subscriptionPurchaseErrorDescription':
-          'Please check the mock state or try loading again.',
+          'Please try again and check your Firestore catalog or permissions.',
       'subscriptionPurchaseErrorMessage':
           'Unable to complete purchase. Please try again.',
       'subscriptionPurchaseErrorTitle': 'Unable to load packages',
@@ -75,10 +76,24 @@ class AppTranslations extends Translations {
       'subscriptionSettingsAppVersion': 'App version',
       'subscriptionSettingsAppVersionDescription':
           'Current version installed on this device.',
+      'subscriptionSettingsClearHistoryButton': 'Clear purchase history',
+      'subscriptionSettingsClearHistoryConfirmAction': 'Clear now',
+      'subscriptionSettingsClearHistoryConfirmDescription':
+          'This will permanently remove all active and expired package records from purchase history in this environment.',
+      'subscriptionSettingsClearHistoryConfirmTitle': 'Clear purchase history?',
+      'subscriptionSettingsClearHistoryDescription':
+          'Delete all active and expired package records for the current environment.',
+      'subscriptionSettingsClearHistoryErrorMessage':
+          'Unable to clear purchase history. Please try again.',
       'subscriptionSettingsEnglish': 'English',
       'subscriptionSettingsHeadline': 'Manage your app preferences',
       'subscriptionSettingsLanguageDescription':
           'Choose the language used across the subscription flow.',
+      'subscriptionSettingsClearHistoryProcessing': 'Clearing history...',
+      'subscriptionSettingsClearHistorySuccessMessage':
+          'Purchase history has been cleared.',
+      'subscriptionSettingsClearHistorySuccessTitle': 'History cleared',
+      'subscriptionSettingsClearHistoryTitle': 'Clear purchase history',
       'subscriptionSettingsSubtitle':
           'Update language preferences and review application details here.',
       'subscriptionSettingsThai': 'Thai',
@@ -95,6 +110,31 @@ class AppTranslations extends Translations {
       'paymentApplePay': 'Apple Pay',
       'paymentCreditCard': 'Credit card',
       'paymentGooglePlay': 'Google Play',
+      'packageBackstageVipDescription':
+          'The full fan experience with concierge perks and the best access to exclusive moments.',
+      'packageBackstageVipFeature1': 'Everything in Stage Pass',
+      'packageBackstageVipFeature2': 'VIP-only behind-the-scenes livestreams',
+      'packageBackstageVipFeature3':
+          'First-queue access for meet and greet events',
+      'packageBackstageVipFeature4': 'Dedicated concierge support',
+      'packageBackstageVipSubtitle': 'Ultimate annual access for superfans',
+      'packageBackstageVipTitle': 'Backstage VIP',
+      'packageFanClubDescription':
+          'More artist perks, better downloads, and bonus rewards every month.',
+      'packageFanClubFeature1': 'Everything in Pink Plus',
+      'packageFanClubFeature2': 'Offline downloads on 4 devices',
+      'packageFanClubFeature3': 'Monthly fan badge and points boost',
+      'packageFanClubFeature4': 'Access to member-only live chats',
+      'packageFanClubSubtitle': 'Monthly perks for dedicated fans',
+      'packageFanClubTitle': 'Fan Club',
+      'packagePinkLiteDescription':
+          'Essential streaming for daily playlists at the lightest price.',
+      'packagePinkLiteFeature1': 'Ad-free listening on mobile',
+      'packagePinkLiteFeature2': 'High-quality audio streaming',
+      'packagePinkLiteFeature3': 'Save favorite playlists',
+      'packagePinkLiteFeature4': 'Offline downloads on 1 device',
+      'packagePinkLiteSubtitle': 'Entry plan for casual listeners',
+      'packagePinkLiteTitle': 'Pink Lite',
       'packagePinkPlusDescription':
           'Ad-free listening with offline access and early-release picks.',
       'packagePinkPlusFeature1': 'Unlimited music streaming',
@@ -114,6 +154,7 @@ class AppTranslations extends Translations {
     },
     'th_TH': {
       'commonBrowsePlans': 'ดูแพ็กเกจ',
+      'commonCancel': 'ยกเลิก',
       'commonEmptyTitle': 'ยังไม่มีข้อมูล',
       'commonErrorTitle': 'เกิดข้อผิดพลาด',
       'commonLanguage': 'ภาษา',
@@ -129,7 +170,7 @@ class AppTranslations extends Translations {
           'ประวัติแพ็กเกจที่ใช้งานอยู่และหมดอายุแล้วจะแสดงที่นี่หลังมีการซื้อ',
       'subscriptionHistoryEmptyTitle': 'ยังไม่มีประวัติการซื้อ',
       'subscriptionHistoryErrorDescription':
-          'กรุณาลองใหม่อีกครั้งหรือตรวจสอบ mock state ที่ใช้งานอยู่',
+          'กรุณาลองใหม่อีกครั้ง และตรวจสอบข้อมูลหรือสิทธิ์การเข้าถึง Firestore',
       'subscriptionHistoryErrorTitle': 'ไม่สามารถโหลดประวัติได้',
       'subscriptionHistoryHeadline': 'ติดตามแพ็กเกจปัจจุบันและแพ็กเกจที่ผ่านมา',
       'subscriptionHistoryLoadingDescription':
@@ -145,11 +186,11 @@ class AppTranslations extends Translations {
       'subscriptionNoExpiredPlan': 'ยังไม่มีแพ็กเกจที่หมดอายุ',
       'subscriptionPaymentMethod': 'ช่องทางชำระเงิน',
       'subscriptionPaymentSecure':
-          'รองรับ flow แบบ responsive และพร้อมต่อ staging / production',
+          'รองรับ flow แบบ responsive และแยก path Firestore สำหรับ staging / production',
       'subscriptionPerMonth': 'ต่อเดือน',
       'subscriptionPerYear': 'ต่อปี',
       'subscriptionPurchaseErrorDescription':
-          'กรุณาตรวจสอบ mock state หรือลองโหลดใหม่อีกครั้ง',
+          'กรุณาลองใหม่อีกครั้ง และตรวจสอบ catalog หรือสิทธิ์การเข้าถึง Firestore',
       'subscriptionPurchaseErrorMessage':
           'ไม่สามารถทำรายการซื้อได้ กรุณาลองใหม่อีกครั้ง',
       'subscriptionPurchaseErrorTitle': 'ไม่สามารถโหลดแพ็กเกจได้',
@@ -164,9 +205,24 @@ class AppTranslations extends Translations {
       'subscriptionSettingsAppVersion': 'เวอร์ชันแอป',
       'subscriptionSettingsAppVersionDescription':
           'เวอร์ชันที่ติดตั้งอยู่บนอุปกรณ์เครื่องนี้',
+      'subscriptionSettingsClearHistoryButton': 'เคลียร์ประวัติการซื้อ',
+      'subscriptionSettingsClearHistoryConfirmAction': 'เคลียร์เลย',
+      'subscriptionSettingsClearHistoryConfirmDescription':
+          'รายการแพ็กเกจที่กำลังใช้งานและหมดอายุทั้งหมดในประวัติการซื้อของ environment นี้จะถูกลบอย่างถาวร',
+      'subscriptionSettingsClearHistoryConfirmTitle':
+          'ต้องการเคลียร์ประวัติการซื้อใช่ไหม',
+      'subscriptionSettingsClearHistoryDescription':
+          'ลบรายการแพ็กเกจที่กำลังใช้งานและหมดอายุทั้งหมดของ environment ปัจจุบัน',
+      'subscriptionSettingsClearHistoryErrorMessage':
+          'ไม่สามารถเคลียร์ประวัติการซื้อได้ กรุณาลองใหม่อีกครั้ง',
       'subscriptionSettingsEnglish': 'English',
       'subscriptionSettingsHeadline': 'จัดการการตั้งค่าของแอป',
       'subscriptionSettingsLanguageDescription': 'เลือกภาษาที่ใช้แสดงผล',
+      'subscriptionSettingsClearHistoryProcessing': 'กำลังเคลียร์ประวัติ...',
+      'subscriptionSettingsClearHistorySuccessMessage':
+          'ล้างประวัติการซื้อเรียบร้อยแล้ว',
+      'subscriptionSettingsClearHistorySuccessTitle': 'เคลียร์ประวัติสำเร็จ',
+      'subscriptionSettingsClearHistoryTitle': 'เคลียร์ประวัติการซื้อ',
       'subscriptionSettingsSubtitle':
           'ปรับภาษาและดูรายละเอียดของแอปได้จากหน้านี้',
       'subscriptionSettingsThai': 'ไทย',
@@ -183,6 +239,30 @@ class AppTranslations extends Translations {
       'paymentApplePay': 'Apple Pay',
       'paymentCreditCard': 'บัตรเครดิต',
       'paymentGooglePlay': 'Google Play',
+      'packageBackstageVipDescription':
+          'ประสบการณ์แฟนแบบเต็มรูปแบบ พร้อมสิทธิพิเศษระดับ concierge และการเข้าถึงโมเมนต์เอ็กซ์คลูซีฟที่ดีที่สุด',
+      'packageBackstageVipFeature1': 'รับทุกอย่างจาก Stage Pass',
+      'packageBackstageVipFeature2': 'รับชมไลฟ์เบื้องหลังเฉพาะสมาชิก VIP',
+      'packageBackstageVipFeature3': 'ได้คิวแรกสำหรับกิจกรรม meet and greet',
+      'packageBackstageVipFeature4': 'มีผู้ช่วยดูแลแบบเฉพาะสมาชิก',
+      'packageBackstageVipSubtitle': 'แพ็กเกจรายปีขั้นสุดสำหรับซูเปอร์แฟน',
+      'packageBackstageVipTitle': 'Backstage VIP',
+      'packageFanClubDescription':
+          'เพิ่มสิทธิพิเศษของศิลปิน ดาวน์โหลดได้มากขึ้น และรับโบนัสรายเดือนทุกเดือน',
+      'packageFanClubFeature1': 'รับทุกอย่างจาก Pink Plus',
+      'packageFanClubFeature2': 'ดาวน์โหลดออฟไลน์ได้ 4 อุปกรณ์',
+      'packageFanClubFeature3': 'รับตราแฟนและคะแนนโบนัสรายเดือน',
+      'packageFanClubFeature4': 'เข้าห้องไลฟ์แชตเฉพาะสมาชิกได้',
+      'packageFanClubSubtitle': 'สิทธิพิเศษรายเดือนสำหรับแฟนตัวยง',
+      'packageFanClubTitle': 'Fan Club',
+      'packagePinkLiteDescription':
+          'ฟังเพลย์ลิสต์ประจำวันได้แบบคุ้มค่า พร้อมสิทธิ์พื้นฐานที่จำเป็นในราคาที่เบาที่สุด',
+      'packagePinkLiteFeature1': 'ฟังบนมือถือได้แบบไม่มีโฆษณา',
+      'packagePinkLiteFeature2': 'สตรีมเสียงคุณภาพสูง',
+      'packagePinkLiteFeature3': 'บันทึกเพลย์ลิสต์โปรดได้',
+      'packagePinkLiteFeature4': 'ดาวน์โหลดออฟไลน์ได้ 1 อุปกรณ์',
+      'packagePinkLiteSubtitle': 'แพ็กเกจเริ่มต้นสำหรับคนฟังสบาย ๆ',
+      'packagePinkLiteTitle': 'Pink Lite',
       'packagePinkPlusDescription':
           'ฟังแบบไม่มีโฆษณา ดาวน์โหลดออฟไลน์ได้ และเข้าถึงคอนเทนต์ที่ปล่อยก่อนใคร',
       'packagePinkPlusFeature1': 'สตรีมเพลงได้ไม่จำกัด',

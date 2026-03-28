@@ -22,6 +22,8 @@ class SubscriptionSettingsPage extends GetView<SubscriptionSettingsController> {
             children: const [
               _LanguageSettingsCard(),
               SizedBox(height: 18),
+              _ClearHistoryCard(),
+              SizedBox(height: 18),
               _AppVersionCard(),
             ],
           ),
@@ -181,6 +183,119 @@ class _AppVersionCard extends GetView<SubscriptionSettingsController> {
   }
 }
 
+class _ClearHistoryCard extends GetView<SubscriptionSettingsController> {
+  const _ClearHistoryCard();
+
+  Future<void> _confirmClearHistory(BuildContext context) async {
+    final shouldClear = await showDialog<bool>(
+      context: context,
+      builder:
+          (dialogContext) => AlertDialog(
+            title: Text('subscriptionSettingsClearHistoryConfirmTitle'.tr),
+            content: Text(
+              'subscriptionSettingsClearHistoryConfirmDescription'.tr,
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(dialogContext).pop(false),
+                child: Text('commonCancel'.tr),
+              ),
+              FilledButton(
+                onPressed: () => Navigator.of(dialogContext).pop(true),
+                style: FilledButton.styleFrom(
+                  backgroundColor: AppColors.danger,
+                  foregroundColor: Colors.white,
+                ),
+                child: Text('subscriptionSettingsClearHistoryConfirmAction'.tr),
+              ),
+            ],
+          ),
+    );
+
+    if (shouldClear == true) {
+      await controller.clearPurchaseHistory();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const _SettingsIcon(
+                  icon: Icons.delete_sweep_rounded,
+                  backgroundColor: Color(0xFFFFE5EA),
+                  iconColor: AppColors.danger,
+                ),
+                const SizedBox(width: 14),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'subscriptionSettingsClearHistoryTitle'.tr,
+                        style: theme.textTheme.titleMedium,
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        'subscriptionSettingsClearHistoryDescription'.tr,
+                        style: theme.textTheme.bodyMedium,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
+            Obx(() {
+              final isClearing = controller.isClearingHistory.value;
+
+              return FilledButton.icon(
+                onPressed:
+                    isClearing ? null : () => _confirmClearHistory(context),
+                style: FilledButton.styleFrom(
+                  backgroundColor: AppColors.danger,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 18,
+                    vertical: 14,
+                  ),
+                ),
+                icon:
+                    isClearing
+                        ? const SizedBox(
+                          width: 18,
+                          height: 18,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              Colors.white,
+                            ),
+                          ),
+                        )
+                        : const Icon(Icons.delete_forever_rounded, size: 20),
+                label: Text(
+                  isClearing
+                      ? 'subscriptionSettingsClearHistoryProcessing'.tr
+                      : 'subscriptionSettingsClearHistoryButton'.tr,
+                ),
+              );
+            }),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _LanguageChip extends StatelessWidget {
   const _LanguageChip({
     required this.label,
@@ -240,20 +355,23 @@ class _LanguageChip extends StatelessWidget {
 }
 
 class _SettingsIcon extends StatelessWidget {
-  const _SettingsIcon({required this.icon});
+  const _SettingsIcon({
+    required this.icon,
+    this.backgroundColor = AppColors.roseTint,
+    this.iconColor = AppColors.primaryRoseDark,
+  });
 
   final IconData icon;
+  final Color backgroundColor;
+  final Color iconColor;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 44,
       height: 44,
-      decoration: const BoxDecoration(
-        color: AppColors.roseTint,
-        shape: BoxShape.circle,
-      ),
-      child: Icon(icon, color: AppColors.primaryRoseDark, size: 22),
+      decoration: BoxDecoration(color: backgroundColor, shape: BoxShape.circle),
+      child: Icon(icon, color: iconColor, size: 22),
     );
   }
 }

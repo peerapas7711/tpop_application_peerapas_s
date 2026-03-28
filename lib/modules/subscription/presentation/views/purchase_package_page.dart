@@ -19,7 +19,7 @@ class PurchasePackagePage extends GetView<PurchasePackageController> {
         onRefresh: controller.loadPackages,
         child: _PurchaseContent(controller: controller),
       ),
-      onLoading: const SubscriptionLoadingView(recordCount: 2),
+      onLoading: const SubscriptionLoadingView(recordCount: 5),
       onEmpty: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 520),

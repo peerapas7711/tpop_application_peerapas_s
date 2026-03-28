@@ -2,17 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:tpop_application_peerapas_s/service/app_storage.dart';
+import 'package:tpop_application_peerapas_s/utils/constants/app_colors.dart';
 import 'package:tpop_application_peerapas_s/utils/lang/app_translations.dart';
 
+import '../../domain/usecases/clear_purchase_history_usecase.dart';
+import 'purchase_history_controller.dart';
+
 class SubscriptionSettingsController extends GetxController {
+  SubscriptionSettingsController({
+    required ClearPurchaseHistoryUseCase clearPurchaseHistoryUseCase,
+  }) : _clearPurchaseHistoryUseCase = clearPurchaseHistoryUseCase;
+
   static const _languageSwitchLoadingDuration = Duration(milliseconds: 450);
 
+  final ClearPurchaseHistoryUseCase _clearPurchaseHistoryUseCase;
   final RxString selectedLanguageCode =
       AppTranslations.fallbackLocale.languageCode.obs;
   final RxString changingLanguageCode = ''.obs;
   final RxString appVersion = ''.obs;
   final RxBool isUpdatingLanguage = false.obs;
   final RxBool isLoadingVersion = true.obs;
+  final RxBool isClearingHistory = false.obs;
 
   @override
   void onInit() {
@@ -64,5 +74,43 @@ class SubscriptionSettingsController extends GetxController {
         Get.locale ??
         AppTranslations.fallbackLocale;
     selectedLanguageCode.value = locale.languageCode;
+  }
+
+  Future<void> clearPurchaseHistory() async {
+    if (isClearingHistory.value) {
+      return;
+    }
+
+    isClearingHistory.value = true;
+
+    try {
+      await _clearPurchaseHistoryUseCase.call();
+
+      if (Get.isRegistered<PurchaseHistoryController>()) {
+        await Get.find<PurchaseHistoryController>().loadHistory(
+          showLoading: false,
+        );
+      }
+
+      Get.snackbar(
+        'subscriptionSettingsClearHistorySuccessTitle'.tr,
+        'subscriptionSettingsClearHistorySuccessMessage'.tr,
+        backgroundColor: AppColors.success,
+        colorText: Colors.white,
+        snackPosition: SnackPosition.bottom,
+        margin: const EdgeInsets.all(16),
+      );
+    } catch (_) {
+      Get.snackbar(
+        'commonErrorTitle'.tr,
+        'subscriptionSettingsClearHistoryErrorMessage'.tr,
+        backgroundColor: AppColors.danger,
+        colorText: Colors.white,
+        snackPosition: SnackPosition.bottom,
+        margin: const EdgeInsets.all(16),
+      );
+    } finally {
+      isClearingHistory.value = false;
+    }
   }
 }
