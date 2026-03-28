@@ -8,7 +8,10 @@ plugins {
 android {
     namespace = "com.example.tpop_application_peerapas_s"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    // Flutter 3.29.1 defaults to NDK 26.3.11579264, but this machine has a
+    // broken install for that version. Use an installed, newer NDK that still
+    // satisfies plugin requirements.
+    ndkVersion = "29.0.14033849"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
